@@ -3,9 +3,9 @@ import LanguageContext from "../contexts/LanguageContext";
 import ColorContext from "../contexts/ColorContext";
 import UserCreate from "./UserCreate";
 class App extends React.Component {
-  state = { language: "English" };
-  onLanguageSelect = (language) => {
-    this.setState({ language });
+  state = { language: "English", color: "Red" };
+  onFlagSelect = (language, color) => {
+    this.setState({ language, color });
   };
 
   render() {
@@ -16,17 +16,17 @@ class App extends React.Component {
           <i
             className="flag us"
             onClick={() => {
-              this.onLanguageSelect("English");
+              this.onFlagSelect("English", "red");
             }}
           />
           <i
             className="flag in"
             onClick={() => {
-              this.onLanguageSelect("Hindi");
+              this.onFlagSelect("Hindi", "green");
             }}
           />
         </div>
-        <ColorContext.Provider value="red">
+        <ColorContext.Provider value={this.state.color}>
           <LanguageContext.Provider value={this.state.language}>
             <UserCreate />
           </LanguageContext.Provider>
